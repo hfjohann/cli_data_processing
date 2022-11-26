@@ -1,7 +1,8 @@
 """pytest tests for library"""
 
-import pytest
 import sys
+
+import pytest
 
 sys.path.append("..")
 from nlib import csvops

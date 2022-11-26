@@ -6,8 +6,8 @@ See this for notes on I/O Performance in Pandas:
 
 """
 
-from sensible.loginit import logger
 import pandas as pd
+from sensible.loginit import logger
 
 log = logger(__name__)
 log.debug("imported csvops module")
@@ -25,7 +25,7 @@ def list_csv_column_names(data):
 
     df = ingest_csv(data)
     colnames = list(df.columns.values)
-    colnames_msg = "Column Names: {colnames}".format(colnames=colnames)
+    colnames_msg = f"Column Names: {colnames}"
     log.info(colnames_msg)
     return colnames
 
@@ -56,8 +56,10 @@ def group_by_operations(data, groupby_column_name, apply_column_name, func):
     """
 
     df = ingest_csv(data)
-    grouped = df.groupby(groupby_column_name)[
-        apply_column_name
-    ]  # GroupBy with filter to specific column(s)
+    grouped = df.groupby(groupby_column_name)
+    if apply_column_name:
+        grouped = grouped[
+            apply_column_name
+        ]  # GroupBy with filter to specific column(s)
     applied_data = grouped.apply(func)
     return applied_data

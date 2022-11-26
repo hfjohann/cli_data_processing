@@ -29,3 +29,8 @@ def npmedian(x):
     """Numpy Library Median"""
 
     return numpy.median(x)
+
+
+def tsp(x):
+    """Return True Shooting Percentage"""
+    return x["POINTS"] / (2 * (x["FGA"] + 0.44 * x["FTA"]))
